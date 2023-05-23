@@ -18,13 +18,17 @@ conda install python=3.9 -y
 conda install pandas numpy seaborn -y
 pip install yfinance pandas_datareader ta
 pip install psycopg2-binary sqlalchemy 
+pip install google-cloud-logging google-cloud-storage
 
 
 conda activate api
 conda install python=3.10.11 -y
 
 conda install pandas numpy scikit-learn -y
+pip install yfinance pandas_datareader ta
 pip install psycopg2-binary sqlalchemy scipy
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 pip install pytorch-forecasting
 pip install pytorch-lightning
+pip install tensorboard
+pip install optuna google-cloud-logging google-cloud-storage google-cloud-monitoring
