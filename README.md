@@ -102,14 +102,190 @@ Federal Reserve Economic Data (FRED):
 
 
 ## ETL
+Se descargan y guardan en base de datos los datos históricos de las variables de interés.
+
+Se descarga los datos desde el 2012 a la actualidad.
+
+```python
+# ...
+import yfinance
+import yfinance as yf
+import pandas_datareader as pdr
+import pandas_datareader.data as web
+# ...
+
+client_logging = google.cloud.logging.Client()
+client_logging.setup_logging()
+
+# ...
+
+date_start = '2012-01-01'
+date_end = datetime.datetime.now().strftime('%Y-%m-%d')
+
+
+print(f"Downloading data from:{date_start} to:{date_end}")
+
+tickers = ["^GSPC", 'AAPL', 'MSFT','GOOG','GOOGL','TSLA','AMZN','BRK-A','BRK-B','NVDA','META','UNH','BZ=F','NG=F', 'GC=F', 'EURUSD=X','^VIX','^IXIC']
+
+from_date = None
+to_date = None
+
+for ticker in tickers:
+    print(f"Downloading data for ticker: {ticker}")
+    stock_data = yfinance.download(ticker, start=date_start, end=date_end)
+    stock_data = stock_data.dropna()
+    df = stock_data.reset_index().rename(columns={'Date':'date', 'Open':'open', 'High':'high', 'Low':'low', 'Close':'close', 'Adj Close':'adj_close', 'Volume':'volume'})
+    from_date = df['date'].min()
+    to_date = df['date'].max()
+
+    table_name = "ts_" + re.sub(r'\W+', '', ticker).lower() # remove special characters from ticker and lower case
+
+    df.to_sql(table_name, con=conn, if_exists='replace', index=False)
+    conn.commit()
+    print(f"Wrote data to Table {table_name}, rows: {df.shape[0]}")
+
+
+fred_labels = ['EFFR', 'CSUSHPISA', 'GDP', 'CPIAUCSL', 'CPILFESL']
+
+for label in fred_labels:
+    print(f"Downloading data for ticker: {label}")
+    fred_data = web.DataReader(label, 'fred', datetime.datetime.strptime(date_start, '%Y-%m-%d'), datetime.datetime.strptime(date_end, '%Y-%m-%d'))
+    fred_data[label].fillna(method='ffill', inplace=True)
+    fred_data = fred_data.dropna()
+    fred_data.index.names = ['Date']
+    df = fred_data.reset_index().rename(columns={'Date':'date', label:'value'})
+
+    table_name = "ts_" + re.sub(r'\W+', '', label).lower() # remove special characters from ticker and lower case
+
+    df.to_sql(table_name, con=conn, if_exists='replace', index=False)
+    conn.commit()
+    print(f"Wrote data to Table {table_name}, rows: {df.shape[0]}")
+
+# ...
+```
+
+
+## Ajuste de hiperparametros
+Se hace uso de optuna para ajustar el modelo DeepVAR
+
+```python
+# ...
+def tuning():
+    # Download Data
+
+    date_start = '2012-01-01'
+    date_end = datetime.datetime.now().strftime('%Y-%m-%d')
+
+    # ...
+
+    # feature selection
+    # ...
+
+    # Transform data
+
+    # ...
+
+    # DeepVAR model
+    max_prediction_length = 10
+    max_encoder_length = 30
+
+    training_cutoff = train_series["time_idx"].max() - max_prediction_length
+
+    context_length = max_encoder_length
+    prediction_length = max_prediction_length
+
+    global training
+    training = TimeSeriesDataSet(
+        train_series[lambda x: x.time_idx <= training_cutoff],
+        time_idx="time_idx",
+        target="value",
+        categorical_encoders={"series": NaNLabelEncoder().fit(train_series.series)},
+        group_ids=["series"],
+        static_categoricals=[
+            "series"
+        ], 
+        time_varying_unknown_reals=["value"],
+        max_encoder_length=context_length,
+        max_prediction_length=prediction_length,
+    )
+
+
+    # for validation
+    validation = TimeSeriesDataSet.from_dataset(training, train_series, min_prediction_idx=training_cutoff + 1)
+
+    batch_size = 128
+
+    global train_dataloader
+    train_dataloader = training.to_dataloader(
+        train=True, batch_size=batch_size, num_workers=0, batch_sampler="synchronized"
+    )
+
+    global val_dataloader
+    val_dataloader = validation.to_dataloader(
+        train=False, batch_size=batch_size, num_workers=0, batch_sampler="synchronized"
+    )
+
+
+    study = optuna.create_study(direction="minimize")
+    study.optimize(objective, n_trials=50)
+
+
+    print("Best trial:")
+    trial = study.best_trial
+
+    print("  Value: {}".format(trial.value))
+    print("  Params: ")
+    for key, value in trial.params.items():
+        print("    {}: {}".format(key, value))
+    
+    with open("hyperparameters.json", "w") as file:
+        json.dump(trial.params, file)
+
+    print("DONE")
+
+
+def objective(trial):
+    # Suggest hyperparameters
+    learning_rate = trial.suggest_loguniform("learning_rate", 0.001, 0.1)
+    hidden_size = trial.suggest_int("hidden_size", 4, 128)
+    rank = trial.suggest_int("rank", 4, 30)
+    rnn_layers = trial.suggest_int("rnn_layers", 1, 3)
+
+    # Create the model
+    model =  DeepAR.from_dataset(
+        training,
+        learning_rate=learning_rate,
+        hidden_size=hidden_size,
+        rnn_layers=rnn_layers,
+        optimizer="Adam",
+        loss=MultivariateNormalDistributionLoss(rank=rank),
+    )
+    
+    
+    # Create the PyTorch Lightning Trainer
+    
+    trainer = pl.Trainer(
+        max_epochs=30,
+        accelerator="gpu",
+        gradient_clip_val=0.1,
+        limit_train_batches=50,
+        callbacks=[pl.callbacks.EarlyStopping(monitor="val_loss", min_delta=1e-4, patience=10)],
+    )
+    
+
+    # Train the model
+    trainer.fit(model, train_dataloaders=train_dataloader, val_dataloaders=val_dataloader)
+    
+
+# ...
+
+```
 
 ## Entrenamiento del modelo de predicción
 
-## Ajuste de hiperparametros
 
 ## Resultados
 
-## Despliegue en GCP
 
 ## Entrenamiento continuo del modelo
 
@@ -117,6 +293,6 @@ Federal Reserve Economic Data (FRED):
 
 
 
-
 ## Referencias:
 
+[1] D. Salinas et al. High-Dimensional Multivariate Forecasting with Low-Rank Gaussian Copula Processes, International Journal of Forecasting (2019).

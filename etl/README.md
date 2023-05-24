@@ -1,5 +1,6 @@
-## RUN ETL, after tables created
+## ETL
 
+Ejecutar
 ```bash
 cd ~/MIAD_Final_project/etl/
 conda activate etl
