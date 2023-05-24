@@ -282,12 +282,137 @@ def objective(trial):
 ```
 
 ## Entrenamiento del modelo de predicción
+    
+El modelo entrenado es el DeepVAR con los siguientes parametros:
+
+```python
+ net = DeepAR.from_dataset(
+        training,
+        learning_rate=0.006431956578942552,
+        log_interval=10,
+        log_val_interval=1,
+        hidden_size=38,
+        rnn_layers=1,
+        optimizer="Adam",
+        loss=MultivariateNormalDistributionLoss(rank=14),
+    )
+
+```
 
 
 ## Resultados
+El modelo DeepVAR alcanzo métricas sobre 10 días de predicción del S&P500
+
+```bash
+MAPE: 0.5576595243631158
+SMAPE: 0.560811992647919
+MAE: 23.265193543142686
+MSE: 1144.3109246677573
+RMSE: 33.827665078567826
+```
+
+métricas de la prediccion de las principales acciones:
+
+AAPL
+```bash
+MAPE: 2.1618667523354764
+SMAPE: 2.191073695206338
+MAE: 3.753178293256178
+MSE: 17.41960204897644
+RMSE: 4.173679677332275
+```
+
+AMZN
+```bash
+MAPE: 6.11248366164213
+SMAPE: 6.338948341005639
+MAE: 6.961216149168331
+MSE: 57.4636532318337
+RMSE: 7.580478430272967
+```
+
+GOOG
+```bash
+MAPE: 9.161140762251685
+SMAPE: 9.639052809467067
+MAE: 10.968042574762183
+MSE: 131.39183665073682
+RMSE: 11.46262782483741
+```
+
+GOOGL
+```bash
+MAPE: 9.275758398440221
+SMAPE: 9.764506624519665
+MAE: 11.056456823017403
+MSE: 133.06969713764593
+RMSE: 11.535583953040518
+```
+
+META
+```bash
+MAPE: 3.230670378149765
+SMAPE: 3.313936607238387
+MAE: 7.813054025453627
+MSE: 95.91139843764543
+RMSE: 9.793436497861485
+```
+
+MSFT
+```bash
+MAPE: 2.4845972349559404
+SMAPE: 2.5236729082201066
+MAE: 7.795505159508207
+MSE: 76.24170120603812
+RMSE: 8.731649397796394
+```
+
+NVDA
+```bash
+MAPE: 4.036488545430314
+SMAPE: 4.22312114143283
+MAE: 12.3692238457364
+MSE: 342.5030032830427
+RMSE: 18.50683666332641
+```
+
+TSLA
+```bash
+MAPE: 1.952950837076913
+SMAPE: 1.9797689200362754
+MAE: 3.403795401072389
+MSE: 20.443587625878216
+RMSE: 4.52145857283667
+```
+
+Además, con DeepVAR, como es un modelo probabilístico que modelo la distribución de los valores futuros de cada serie de tiempo, podemos calcular los intervalos de confianza de las predicciones en intervalos de 50, 90, 95 y 98 porciento.
+
+
 
 
 ## Entrenamiento continuo del modelo
+Debido a que la serie de tiempo tiene periodicidad diaria y es volátil tenemos que entrenar el modelo diariamente para tener precisión en las predicciones futuras (a corto plazo y largo plazo), se configura un job en la instancia de GCP para que se entrene diariamente el modelo con los datos actualizados.
+
+Job:
+Se ejecuta el ETL, validación, entrenamiento del modelo y predicciones usando el modelo entrenado.
+
+```bash
+cd /home/freddy_12_120/MIAD_Final_project/etl/
+conda activate etl
+python3 etl_first.py
+conda deactivate
+
+cd /home/freddy_12_120/MIAD_Final_project/training/
+conda activate api
+python3 validation.py
+python3 train_cpu.py
+
+cd /home/freddy_12_120/MIAD_Final_project/predictions/
+python3 predictions.py
+conda deactivate
+
+```
+
 
 ## Tableros en Power BI
 
