@@ -1,6 +1,7 @@
 
 ## Ejecutable
-make executable
+
+hacer ejecutable el script.
 ```bash
 chmod +x /home/freddy_12_120/MIAD_Final_project/job/run.sh
 ```

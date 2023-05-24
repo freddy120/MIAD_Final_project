@@ -166,7 +166,7 @@ for label in fred_labels:
 
 
 ## Ajuste de hiperparametros
-Se hace uso de optuna para ajustar el modelo DeepVAR
+Se hace uso de optuna para ajustar el modelo DeepVAR, se ajusta el learning rate, hidden size de capas RNN, el rank de la función de pérdida “Multivariate Normal Distribution Loss” y número de capas RNN del modelo DeepVAR.
 
 ```python
 # ...
