@@ -31,8 +31,31 @@ DeepVAR ofrece las siguientes ventajas para el pronóstico de series de tiempo m
 
 ## Arquitectura
 
+Se hace uso de los siguientes recursos de GCP:
+* 1 instancia e2-standard-2 (2 vCPU, 8GB RAM) con Ubuntu 20.04 (Compute engine).
+* 1 instancia SQL con postgresql (SQL).
+* 1 bucket (Cloud storage).
+* Logging de métricas (Logging).
+
 
 ![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/architecture.svg)
+
+La instancia de cómputo tiene como funciones:
+* Realizar el ETL que consiste en descargar los datos históricos y almacenarlos en la base de datos.
+* Realizar la validación y entrenamiento del modelo, y como resultado guardar el modelo en el bucket.
+* Realizar las predicciones haciendo uso del modelo guardado en el bucket.
+
+La instancia SQL tiene como funciones:
+* Almacenar en tablas los datos históricos y predicciones de las series de tiempo.
+* Se usa como fuente de datos para Power BI.
+
+El bucket tiene como funciones:
+* Almacenar los artefactos del modelo entrenado.
+* Almacenar un histórico de los modelos entrenados.
+
+El logging tiene como funciones:
+* Monitoreo del desempeño del modelo con el paso del tiempo.
+* Monitoreo del entrenamiento diario del modelo y la realización de predicciones.
 
 
 ## Datos
