@@ -32,6 +32,9 @@ DeepVAR ofrece las siguientes ventajas para el pronóstico de series de tiempo m
 ## Arquitectura
 
 
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/architecture.svg)
+
+
 ## Datos
 Se extraen los datos de Yahoo Finance y Federal Reserve Economic Data (FRED) a través de los paquetes de Python yfinance y pandas-datareader. Los datos son livianos, de acceso inmediato y se descargan de internet en cualquier momento mediantes las APIs a las que se acceden a través de las librerías de Python.
 

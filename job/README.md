@@ -1,9 +1,17 @@
+
+## Ejecutable
 make executable
 ```bash
 chmod +x /home/freddy_12_120/MIAD_Final_project/job/run.sh
 ```
 
+## Job de ejecución diario a las 2 am
+Entrenamiento diario, contenido del crontab:
+
+```bash
 crontab -e
+```
+
 ```bash
 
 SHELL=/bin/bash
@@ -12,8 +20,8 @@ BASH_ENV=~/.bashrc_conda
 0 2 * * 2-6 /home/freddy_12_120/MIAD_Final_project/job/run.sh
 ```
 
+contenido del ~/.bashrc_conda:
 
-bashrc_conda
 ```bash
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

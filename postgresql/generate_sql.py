@@ -45,13 +45,15 @@ for ticker in tickers:
     '\t"mean" real, \n' + \
     '\t"min" real, \n' + \
     '\t"max" real, \n' + \
+    '\t"q1" real, \n' + \
     '\t"q2_5" real, \n' + \
     '\t"q5" real, \n' + \
     '\t"q25" real, \n' + \
     '\t"q50" real, \n' + \
     '\t"q75" real, \n' + \
     '\t"q95" real, \n' + \
-    '\t"q97_5" real \n' + \
+    '\t"q97_5" real, \n' + \
+    '\t"q99" real \n' + \
     '); \n\n'
 
 
@@ -64,13 +66,15 @@ for label in fred_labels:
     '\t"mean" real, \n' + \
     '\t"min" real, \n' + \
     '\t"max" real, \n' + \
+    '\t"q1" real, \n' + \
     '\t"q2_5" real, \n' + \
     '\t"q5" real, \n' + \
     '\t"q25" real, \n' + \
     '\t"q50" real, \n' + \
     '\t"q75" real, \n' + \
     '\t"q95" real, \n' + \
-    '\t"q97_5" real \n' + \
+    '\t"q97_5" real, \n' + \
+    '\t"q99" real \n' + \
     '); \n\n'
 
 
