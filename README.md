@@ -1,5 +1,5 @@
 
-![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/miad.png)
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/miad.jpg)
 
 
 # Proyecto final de la Maestría en Inteligencia Analítica de Datos MIAD
