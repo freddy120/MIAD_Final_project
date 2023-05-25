@@ -46,7 +46,7 @@ for ticker in tickers:
     #Adicion a tabla con todos los datos
     symbol=re.sub(r'\W+', '', ticker).lower()
     df_aux=df.copy()
-    df_aux['symbol']=symbol
+    df_aux['symbol']=symbol.upper()
     df_aux=df_aux[['date','symbol','close']] 
 
     df_aux["variacion_1_dia"] = df_aux.close/df_aux.close.shift(1)-1
