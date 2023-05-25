@@ -101,7 +101,7 @@ ts_columns = list(ts_scaler.feature_names_in_)
 df_test_mean = pd.DataFrame()
 df_test_lower = pd.DataFrame()
 df_test_upper = pd.DataFrame()
-
+df_test_q1 = pd.DataFrame()
 df_test_q2_5 = pd.DataFrame()
 df_test_q5 = pd.DataFrame()
 df_test_q95 = pd.DataFrame()
@@ -109,7 +109,7 @@ df_test_q97_5 = pd.DataFrame()
 df_test_q25 = pd.DataFrame()
 df_test_q75 = pd.DataFrame()
 df_test_q50 = pd.DataFrame()
-
+df_test_q99 = pd.DataFrame()
 
 for index, row in prediction.index.iterrows():
     ts_predict = np.array(prediction.output.prediction[index, :])
@@ -117,6 +117,11 @@ for index, row in prediction.index.iterrows():
     df_test_lower[str(row['series'])] = ts_predict.min(axis=1)
     df_test_upper[str(row['series'])] = ts_predict.max(axis=1)
     
+    #98% prediction interval
+    df_test_q1[str(row['series'])] = np.quantile(ts_predict, q=0.01, axis = 1)
+    df_test_q99[str(row['series'])] = np.quantile(ts_predict, q=0.99, axis = 1)
+
+
     #95% prediction interval
     df_test_q2_5[str(row['series'])] = np.quantile(ts_predict, q=0.025, axis = 1)
     df_test_q97_5[str(row['series'])] = np.quantile(ts_predict, q=0.975, axis = 1)
@@ -138,10 +143,12 @@ df_test_mean[ts_columns] = ts_scaler.inverse_transform(df_test_mean[ts_columns].
 df_test_lower[ts_columns] = ts_scaler.inverse_transform(df_test_lower[ts_columns].values)
 df_test_upper[ts_columns] = ts_scaler.inverse_transform(df_test_upper[ts_columns].values)
 
+df_test_q1[ts_columns] = ts_scaler.inverse_transform(df_test_q1[ts_columns].values)
 df_test_q2_5[ts_columns] = ts_scaler.inverse_transform(df_test_q2_5[ts_columns].values)
 df_test_q5[ts_columns] = ts_scaler.inverse_transform(df_test_q5[ts_columns].values)
 df_test_q95[ts_columns] = ts_scaler.inverse_transform(df_test_q95[ts_columns].values)
 df_test_q97_5[ts_columns] = ts_scaler.inverse_transform(df_test_q97_5[ts_columns].values)
+df_test_q99[ts_columns] = ts_scaler.inverse_transform(df_test_q99[ts_columns].values)
 df_test_q25[ts_columns] = ts_scaler.inverse_transform(df_test_q25[ts_columns].values)
 df_test_q75[ts_columns] = ts_scaler.inverse_transform(df_test_q75[ts_columns].values)
 df_test_q50[ts_columns] = ts_scaler.inverse_transform(df_test_q50[ts_columns].values)
@@ -150,6 +157,7 @@ df_test_mean['date'] = date_range.values
 df_test_lower['date'] = date_range.values
 df_test_upper['date'] = date_range.values
 
+df_test_q1['date'] = date_range.values
 df_test_q2_5['date'] = date_range.values
 df_test_q5['date'] = date_range.values
 df_test_q95['date'] = date_range.values
@@ -157,6 +165,7 @@ df_test_q97_5['date'] = date_range.values
 df_test_q25['date'] = date_range.values
 df_test_q75['date'] = date_range.values
 df_test_q50['date'] = date_range.values
+df_test_q99['date'] = date_range.values
 
 print(df_test_q50.tail())
 
@@ -179,6 +188,7 @@ for ts in ts_columns:
         df['mean'] = df_test_mean[ts]
         df['min'] = df_test_lower[ts]
         df['max'] = df_test_upper[ts]
+        df['q1'] = df_test_q1[ts]
         df['q2_5'] = df_test_q2_5[ts]
         df['q5'] = df_test_q5[ts]
         df['q25'] = df_test_q25[ts]
@@ -186,6 +196,7 @@ for ts in ts_columns:
         df['q75'] = df_test_q75[ts]
         df['q95'] = df_test_q95[ts]
         df['q97_5'] = df_test_q97_5[ts]
+        df['q99'] = df_test_q99[ts]
 
         df.to_sql(table_name, con=conn, if_exists='replace', index=False)
         conn.commit()
@@ -199,6 +210,7 @@ for ts in ts_columns:
         df['mean'] = df_test_mean[ts]
         df['min'] = df_test_lower[ts]
         df['max'] = df_test_upper[ts]
+        df['q1'] = df_test_q1[ts]
         df['q2_5'] = df_test_q2_5[ts]
         df['q5'] = df_test_q5[ts]
         df['q25'] = df_test_q25[ts]
@@ -206,7 +218,7 @@ for ts in ts_columns:
         df['q75'] = df_test_q75[ts]
         df['q95'] = df_test_q95[ts]
         df['q97_5'] = df_test_q97_5[ts]
-
+        df['q99'] = df_test_q99[ts]
 
         df.to_sql(table_name, con=conn, if_exists='replace', index=False)
         conn.commit()
