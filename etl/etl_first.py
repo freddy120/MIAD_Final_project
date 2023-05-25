@@ -43,6 +43,29 @@ for ticker in tickers:
     conn.commit()
     print(f"Wrote data to Table {table_name}, rows: {df.shape[0]}")
 
+    #Adicion a tabla con todos los datos
+    symbol=re.sub(r'\W+', '', ticker).lower()
+    df_aux=df.copy()
+    df_aux['symbol']=symbol
+    df_aux=df_aux[['date','symbol','close']] 
+
+    df_aux["variacion_1_dia"] = df_aux.close/df_aux.close.shift(1)-1
+    df_aux["variacion_7_dias"] = df_aux.close/df_aux.close.shift(7)-1
+    df_aux["variacion_30_dias"] = df_aux.close/df_aux.close.shift(30)-1
+    df_aux["variacion_360_dias"] = df_aux.close/df_aux.close.shift(360)-1
+
+    df_aux_maxdate=df_aux.query('date==@to_date')
+
+    if(symbol=="gspc"):
+        print(df)
+        df_alltickers=df_aux_maxdate.copy() 
+    else:
+        df_alltickers = df_alltickers.append(df_aux_maxdate, ignore_index=True)
+
+
+df_alltickers.to_sql('ts_all_variaciones_porc', con=conn, if_exists='replace', index=False)
+conn.commit()
+print(df_alltickers)   
 
 fred_labels = ['EFFR', 'CSUSHPISA', 'GDP', 'CPIAUCSL', 'CPILFESL']
 

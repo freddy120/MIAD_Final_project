@@ -571,3 +571,14 @@ CREATE TABLE "ts_cpilfesl_pred" (
 	"q97_5" real 
 ); 
 
+
+DROP TABLE "ts_all_variaciones_porc";
+CREATE TABLE "ts_all_variaciones_porc" ( 
+	"date" date, 
+	"symbol" VARCHAR (10) primary key, 
+	"close" real, 
+	"variacion_1_dia" real, 
+	"variacion_7_dias" real, 
+	"variacion_30_dias" real, 
+	"variacion_360_dias" real
+); 

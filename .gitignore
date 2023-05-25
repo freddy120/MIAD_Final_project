@@ -3,4 +3,5 @@ Vagrantfile
 hosts
 id_rsa.pub
 bootstrap.sh
+etl_first copyWR.py
 
