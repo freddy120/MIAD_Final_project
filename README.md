@@ -387,6 +387,33 @@ RMSE: 4.52145857283667
 
 Además, con DeepVAR, como es un modelo probabilístico que modelo la distribución de los valores futuros de cada serie de tiempo, podemos calcular los intervalos de confianza de las predicciones en intervalos de 50, 90, 95 y 98 porciento.
 
+S&P500
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/sp500_pred.png)
+
+
+AAPL
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/aapl_pred.png)
+
+AMZN
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/amzn_pred.png)
+
+GOOG
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/goog_pred.png)
+
+GOOGL
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/googl_pred.png)
+
+META
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/meta_pred.png)
+
+MSFT
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/msft_pred.png)
+
+NVDA
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/nvda_pred.png)
+
+TSLA
+![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/tsla_pred.png)
 
 
 
