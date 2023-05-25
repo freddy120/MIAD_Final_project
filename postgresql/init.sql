@@ -1,3 +1,4 @@
+
 DROP TABLE "ts_gspc";
 CREATE TABLE "ts_gspc" ( 
 	"date" date primary key, 
@@ -232,13 +233,15 @@ CREATE TABLE "ts_gspc_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_aapl_pred";
@@ -247,13 +250,15 @@ CREATE TABLE "ts_aapl_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_msft_pred";
@@ -262,13 +267,15 @@ CREATE TABLE "ts_msft_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_goog_pred";
@@ -277,13 +284,15 @@ CREATE TABLE "ts_goog_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_googl_pred";
@@ -292,13 +301,15 @@ CREATE TABLE "ts_googl_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_tsla_pred";
@@ -307,13 +318,15 @@ CREATE TABLE "ts_tsla_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_amzn_pred";
@@ -322,13 +335,15 @@ CREATE TABLE "ts_amzn_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_brka_pred";
@@ -337,13 +352,15 @@ CREATE TABLE "ts_brka_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_brkb_pred";
@@ -352,13 +369,15 @@ CREATE TABLE "ts_brkb_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_nvda_pred";
@@ -367,13 +386,15 @@ CREATE TABLE "ts_nvda_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_meta_pred";
@@ -382,13 +403,15 @@ CREATE TABLE "ts_meta_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_unh_pred";
@@ -397,13 +420,15 @@ CREATE TABLE "ts_unh_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_bzf_pred";
@@ -412,13 +437,15 @@ CREATE TABLE "ts_bzf_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_ngf_pred";
@@ -427,13 +454,15 @@ CREATE TABLE "ts_ngf_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_gcf_pred";
@@ -442,13 +471,15 @@ CREATE TABLE "ts_gcf_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_eurusdx_pred";
@@ -457,13 +488,15 @@ CREATE TABLE "ts_eurusdx_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_vix_pred";
@@ -472,13 +505,15 @@ CREATE TABLE "ts_vix_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_ixic_pred";
@@ -487,13 +522,15 @@ CREATE TABLE "ts_ixic_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_effr_pred";
@@ -502,13 +539,15 @@ CREATE TABLE "ts_effr_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_csushpisa_pred";
@@ -517,13 +556,15 @@ CREATE TABLE "ts_csushpisa_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_gdp_pred";
@@ -532,13 +573,15 @@ CREATE TABLE "ts_gdp_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_cpiaucsl_pred";
@@ -547,13 +590,15 @@ CREATE TABLE "ts_cpiaucsl_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
 
 DROP TABLE "ts_cpilfesl_pred";
@@ -562,15 +607,16 @@ CREATE TABLE "ts_cpilfesl_pred" (
 	"mean" real, 
 	"min" real, 
 	"max" real, 
+	"q1" real, 
 	"q2_5" real, 
 	"q5" real, 
 	"q25" real, 
 	"q50" real, 
 	"q75" real, 
 	"q95" real, 
-	"q97_5" real 
+	"q97_5" real, 
+	"q99" real 
 ); 
-
 
 DROP TABLE "ts_all_variaciones_porc";
 CREATE TABLE "ts_all_variaciones_porc" ( 
@@ -582,3 +628,5 @@ CREATE TABLE "ts_all_variaciones_porc" (
 	"variacion_30_dias" real, 
 	"variacion_360_dias" real
 ); 
+
+
