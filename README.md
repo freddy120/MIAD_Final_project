@@ -385,7 +385,7 @@ MSE: 20.443587625878216
 RMSE: 4.52145857283667
 ```
 
-Además, con DeepVAR, como es un modelo probabilístico que modelo la distribución de los valores futuros de cada serie de tiempo, podemos calcular los intervalos de confianza de las predicciones en intervalos de 50, 90, 95 y 98 porciento.
+Además, con DeepVAR, como es un modelo probabilístico que modela la distribución de los valores futuros de cada serie de tiempo, podemos calcular los intervalos de confianza de las predicciones en intervalos de 50, 90, 95 y 98 porciento.
 
 S&P500
 ![](https://github.com/freddy120/MIAD_Final_project/blob/main/images/sp500_pred.png)
