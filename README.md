@@ -14,10 +14,10 @@
 ## Titulo: Visualización de datos históricos y predicción del índice S&P500 y variables relevantes
 
 ## Integrantes
-* Maria Paula Salamanca Delgado (202124610)
-* Jorge Oswaldo Suárez Rodríguez (202124611)
-* William Alexander Romero Bolivar (202124643)
-* Freddy Rodrigo Mendoza Ticona (202120936)
+* Maria Paula Salamanca Delgado (202124610) m.salamancad@uniandes.edu.co
+* Jorge Oswaldo Suárez Rodríguez (202124611) j.suarez1@uniandes.edu.co
+* William Alexander Romero Bolivar (202124643) w.romerob@uniandes.edu.co
+* Freddy Rodrigo Mendoza Ticona (202120936) r.mendozat@uniandes.edu.co
 
 ## Resumen
 La idea del proyecto es poder visualizar los valores históricos del índice S&P500 junto con las principales acciones que lo componen y con las variables e indicadores económicos que influyen en su variación, para que nos ayude a encontrar relaciones entre estos, además se construye un modelo de múltiples series de tiempo para la predicción principalmente del índice S&P500 en base a sus valores pasados como también de los valores pasados de las principales acciones y de las variables/indicadores económicos más relevantes, de esta forma el modelo nos podrá predecir el valor futuro de las acciones y del índice S&P 500 que nos sirve como soporte para la toma de decisiones de inversión.
