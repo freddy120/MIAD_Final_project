@@ -443,7 +443,39 @@ conda deactivate
 
 ## Tableros en Power BI
 
+El tablero de control desarrollado tiene como objetivo apoyar la toma de decisiones por parte de la Mesa de Dinero del Grupo Stanley (GS) al contar con visualizaciones del comportamiento histórico y de la predicción confiable a corto plazo (de uno a siete días) del S&P500 y variables de interés. A continuación se listan las instrucciones para su uso.
 
+**Instrucciones**:
+
+Diariamente, antes del horario de apertura del mercado colombiano (7:00 am), se cargan automáticamente en la nube los datos históricos y la predicción del S&P500 al último día hábil anterior. Para acceder a los datos más actualizados es necesario actualizar la consulta dando clic en "Actualizar", en la pestaña "Inicio".
+
+Para visualizar el comportamiento del S&P500 y variables de interés, ir a la pestaña “Principal”:
+
+* Si se desea observar el comportamiento histórico para una variable específica en una ventana de tiempo determinada, se debe:
+
+    * Hacer clic sobre el botón “Histórico” que se encuentra en la esquina superior izquierda (clic en la versión pública o Ctrl+clic en la versión de escritorio)
+    * Seleccionar la acción o variable que se desea observar en el filtro “Activo”.
+    * Deslizar el filtro de fecha hasta seleccionar la ventana de tiempo que se desea. 
+
+* Si se desea observar la predicción para una variable específica en una ventana de tiempo determinada para cierto intervalo de confianza, se debe:
+    * Hacer clic sobre el botón “Predicciones” que se encuentra en la esquina superior izquierda (clic en la versión pública o Ctrl+clic en la versión de escritorio)
+    * Seleccionar la acción o variable que se desea observar en el filtro “Activo”
+    * Deslizar el filtro de fecha hasta la ventana de tiempo que se desea. 
+    * Seleccionar el intervalo de confianza que se desea observar en el filtro “Intervalo de confianza”. Por defecto muestra el intervalo de confianza correspondiente al 99%.
+        * Para observar únicamente la predicción, seleccionar únicamente uno de los cuatro intervalos de confianza.
+        * Para observar la predicción acompañada de los datos históricos, seleccionar uno de los intervalos de confianza y la opción “observado” (Ctrl+ clic).
+
+Para visualizar relaciones relevantes en el comportamiento del S&P500 y otras variables, ir a la pestaña "Correlaciones":
+
+* Si se desea observar la relación entre variables del mercado bursátil, se debe:
+    * Hacer clic sobre el botón “Mercado bursátil” que se encuentra en la esquina superior izquierda (clic en la versión pública o Ctrl+clic en la versión de escritorio)
+    * Seleccionar las acciones o variables que se desea observar en los filtros “Activo1” y “Activo2”.
+    * Deslizar el filtro de fecha hasta seleccionar la ventana de tiempo que se desea. 
+
+* Si se desea observar la relación entre variables del mercado bursátil y variables de macroeconómicas, se debe
+    * Hacer clic sobre el botón “Variables macroeconómicas” que se encuentra en la esquina superior izquierda (clic en la versión pública o Ctrl+clic en la versión de escritorio)
+    * Seleccionar las acciones o variables que se desea observar en los filtros “Activo1” y “Variable2”.
+    * Deslizar el filtro de fecha hasta seleccionar la ventana de tiempo que se desea. 
 
 ## Referencias:
 
