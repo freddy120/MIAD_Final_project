@@ -445,6 +445,8 @@ conda deactivate
 
 El tablero de control desarrollado tiene como objetivo apoyar la toma de decisiones por parte de la Mesa de Dinero del Grupo Stanley (GS) al contar con visualizaciones del comportamiento histórico y de la predicción confiable a corto plazo (de uno a diez días) del S&P500 y variables de interés. A continuación se listan las instrucciones para su uso.
 
+Se puede interactuar con el tablero de control [aqui](https://app.powerbi.com/view?r=eyJrIjoiYmU5ZGIwZmEtZTAwYS00ZmEwLWE2YjUtZTFkNTM2Y2VjZDVkIiwidCI6IjFlYmE0NDNmLTIzZTUtNDUzNC05MGQxLTA5NzZhYWJlODZhYyIsImMiOjR9)
+
 **Instrucciones**:
 
 Diariamente, antes del horario de apertura del mercado colombiano (7:00 am), se cargan automáticamente en la nube los datos históricos y la predicción del S&P500 al último día hábil anterior. Para acceder a los datos más actualizados es necesario actualizar la consulta dando clic en "Actualizar", en la pestaña "Inicio".
