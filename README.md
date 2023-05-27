@@ -443,7 +443,7 @@ conda deactivate
 
 ## Tableros en Power BI
 
-El tablero de control desarrollado tiene como objetivo apoyar la toma de decisiones por parte de la Mesa de Dinero del Grupo Stanley (GS) al contar con visualizaciones del comportamiento histórico y de la predicción confiable a corto plazo (de uno a siete días) del S&P500 y variables de interés. A continuación se listan las instrucciones para su uso.
+El tablero de control desarrollado tiene como objetivo apoyar la toma de decisiones por parte de la Mesa de Dinero del Grupo Stanley (GS) al contar con visualizaciones del comportamiento histórico y de la predicción confiable a corto plazo (de uno a diez días) del S&P500 y variables de interés. A continuación se listan las instrucciones para su uso.
 
 **Instrucciones**:
 
